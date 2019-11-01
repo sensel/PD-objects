@@ -1,0 +1,13 @@
+#N canvas 605 198 450 300 10;
+#X obj 194 145 sensel;
+#X msg 194 120 set \$1;
+#X floatatom 194 97 5 0 0 0 - - -, f 5;
+#X obj 4 5 l2ork_toggle_console 1;
+#X obj 146 97 key;
+#X floatatom 146 145 5 0 0 0 - - -, f 5;
+#X msg 251 84 connect 1;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 4 0 0 0;
+#X connect 4 0 5 0;
+#X connect 6 0 0 0;
