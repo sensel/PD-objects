@@ -1,20 +1,0 @@
-#N canvas 579 172 360 230 10;
-#X obj 4 179 sensel;
-#X obj 4 5 l2ork_toggle_console 1;
-#X msg 4 151 connect 1;
-#X obj 73 179 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 5 207 print output_from_sensel;
-#X obj 74 151 metro 100;
-#X obj 73 125 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X text 4 27 Sensel Help:1) Click the connect message to connect to
-the Sensel. Connect takes an argument with how many Sensels to connect
-\, so that multiple can be connected at once.2) Send a bang to poll
-the Sensel. Using a metro object to continuously poll at a rate that
-works best for each individual user and computer is recommended.;
-#X connect 0 0 4 0;
-#X connect 2 0 0 0;
-#X connect 3 0 0 0;
-#X connect 5 0 3 0;
-#X connect 6 0 5 0;
