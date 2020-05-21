@@ -1,0 +1,197 @@
+#N canvas 49 31 1313 619 10;
+#X obj 488 177 sensel;
+#X obj 593 144 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 644 236 print output_from_sensel;
+#X obj 593 102 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 488 42 discover;
+#X msg 579 42 connect SM01174813923;
+#X msg 488 63 disconnect;
+#X obj 593 121 metro 10;
+#X msg 488 84 identify;
+#X text 610 100 connection indicator;
+#X msg 579 63 connect SM01172411629;
+#X text 13 31 Rachel Hachem <rachelly@vt.edu> and Ivica Ico Bukvic
+<ico@vt.edu>, f 66;
+#X text 13 51 Developed in collaboration with the Sensel Inc. Special
+thanks to Peter Nyboer for his support.;
+#X text 13 86 Released under the GPL v3 License: https://www.gnu.org/licenses/gpl-3.0.en.html
+, f 51;
+#X text 13 189 disconnect: disconnects from a connected sensel morph
+device, f 75;
+#X text 13 137 discover: discovers and connects to the first available
+sensel morph device, f 75;
+#X text 13 154 identify: lists all available sensel morph devices'
+serial numbers, f 69;
+#X text 13 120 INPUTS:;
+#X text 13 206 bang: outputs the latest sensel output data. each point
+is numbered and includes 18 properties (see below), f 75;
+#X text 13 240 OUTPUTS:;
+#X text 13 274 left outlet: list of all contact points \, with each
+contact outputted as a list consisting of 19 arguments:, f 68;
+#X text 13 304 1: contact point number;
+#X text 13 321 2: orientation;
+#X text 13 338 3: major axis;
+#X text 13 355 4: minor axis;
+#X text 13 372 5: delta x;
+#X text 13 389 6: delta y;
+#X text 13 406 7: delta force;
+#X text 13 423 8: delta area;
+#X text 13 440 9: min x;
+#X text 13 457 10: min y;
+#X text 13 474 11: max x;
+#X text 13 491 12: max y;
+#X text 13 508 13: peak x;
+#X text 13 525 14: peak y;
+#X text 13 542 15: peak force;
+#X text 13 559 16: x position;
+#X text 13 576 17: y position;
+#X text 13 593 18: total force;
+#X text 13 610 19: area;
+#X obj 488 317 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 657 342 5 0 0 0 X: - -, f 5;
+#X text 13 257 right outlet: indicates connection status (1=connected
+\, 0=disconnected), f 72;
+#X text 497 268 since we already stripped the first argument (contact
+point number) \, unpacks below only have 18 arguments, f 36;
+#X floatatom 707 342 5 0 0 0 Y: - -, f 5;
+#X floatatom 786 342 5 0 0 0 Force: - -, f 5;
+#X text 561 341 1st contact;
+#X obj 505 377 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 674 402 5 0 0 0 X: - -, f 5;
+#X floatatom 724 402 5 0 0 0 Y: - -, f 5;
+#X floatatom 803 402 5 0 0 0 Force: - -, f 5;
+#X text 578 401 2nd contact;
+#X obj 522 437 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 691 462 5 0 0 0 X: - -, f 5;
+#X floatatom 741 462 5 0 0 0 Y: - -, f 5;
+#X floatatom 820 462 5 0 0 0 Force: - -, f 5;
+#X text 595 461 2nd contact;
+#X obj 488 236 route 1 2 3 4 5;
+#X obj 540 497 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 709 522 5 0 0 0 X: - -, f 5;
+#X floatatom 759 522 5 0 0 0 Y: - -, f 5;
+#X floatatom 838 522 5 0 0 0 Force: - -, f 5;
+#X text 613 521 2nd contact;
+#X obj 557 557 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 726 582 5 0 0 0 X: - -, f 5;
+#X floatatom 776 582 5 0 0 0 Y: - -, f 5;
+#X floatatom 855 582 5 0 0 0 Force: - -, f 5;
+#X text 630 581 2nd contact;
+#X text 13 14 DISIS/L2Ork Sensel Morph external http://l2ork.icat.vt.edu
+;
+#X text 497 200 The route object focuses only on the first 5 points.
+simply add more \, as needed \, up to the sensel morph's supported
+limit., f 63;
+#X obj 898 176 sensel;
+#X obj 1003 143 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1054 235 print output_from_sensel;
+#X obj 1003 101 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X msg 898 41 discover;
+#X msg 989 41 connect SM01174813923;
+#X msg 898 62 disconnect;
+#X obj 1003 120 metro 10;
+#X msg 898 83 identify;
+#X text 1020 99 connection indicator;
+#X msg 989 62 connect SM01172411629;
+#X obj 898 316 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 1067 341 5 0 0 0 X: - -, f 5;
+#X text 907 267 since we already stripped the first argument (contact
+point number) \, unpacks below only have 18 arguments, f 36;
+#X floatatom 1117 341 5 0 0 0 Y: - -, f 5;
+#X floatatom 1196 341 5 0 0 0 Force: - -, f 5;
+#X text 971 340 1st contact;
+#X obj 915 376 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 1084 401 5 0 0 0 X: - -, f 5;
+#X floatatom 1134 401 5 0 0 0 Y: - -, f 5;
+#X floatatom 1213 401 5 0 0 0 Force: - -, f 5;
+#X text 988 400 2nd contact;
+#X obj 932 436 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 1101 461 5 0 0 0 X: - -, f 5;
+#X floatatom 1151 461 5 0 0 0 Y: - -, f 5;
+#X floatatom 1230 461 5 0 0 0 Force: - -, f 5;
+#X text 1005 460 2nd contact;
+#X obj 898 235 route 1 2 3 4 5;
+#X obj 950 496 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 1119 521 5 0 0 0 X: - -, f 5;
+#X floatatom 1169 521 5 0 0 0 Y: - -, f 5;
+#X floatatom 1248 521 5 0 0 0 Force: - -, f 5;
+#X text 1023 520 2nd contact;
+#X obj 967 556 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X floatatom 1136 581 5 0 0 0 X: - -, f 5;
+#X floatatom 1186 581 5 0 0 0 Y: - -, f 5;
+#X floatatom 1265 581 5 0 0 0 Force: - -, f 5;
+#X text 1040 580 2nd contact;
+#X text 178 507 IMPORTANT! On Linux \, to be able to connect to the
+sensel device \, you will either have to adjust permissions for accessing
+the ttyACM* (serial) devices \, or run pd-l2ork \, purr-data \, or
+pd with sudo privileges., f 44;
+#X text 13 171 connect <serial-number>: connects to a device with a
+matching serial number, f 75;
+#X text 944 176 This is a second instance for connecting second sensel
+to the same computer, f 42;
+#X connect 0 0 2 0;
+#X connect 0 0 57 0;
+#X connect 0 1 3 0;
+#X connect 1 0 0 0;
+#X connect 3 0 7 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 0 0 0;
+#X connect 7 0 1 0;
+#X connect 8 0 0 0;
+#X connect 10 0 0 0;
+#X connect 40 14 41 0;
+#X connect 40 15 44 0;
+#X connect 40 16 45 0;
+#X connect 47 14 48 0;
+#X connect 47 15 49 0;
+#X connect 47 16 50 0;
+#X connect 52 14 53 0;
+#X connect 52 15 54 0;
+#X connect 52 16 55 0;
+#X connect 57 0 40 0;
+#X connect 57 1 47 0;
+#X connect 57 2 52 0;
+#X connect 57 3 58 0;
+#X connect 57 4 63 0;
+#X connect 58 14 59 0;
+#X connect 58 15 60 0;
+#X connect 58 16 61 0;
+#X connect 63 14 64 0;
+#X connect 63 15 65 0;
+#X connect 63 16 66 0;
+#X connect 70 0 72 0;
+#X connect 70 0 97 0;
+#X connect 70 1 73 0;
+#X connect 71 0 70 0;
+#X connect 73 0 77 0;
+#X connect 74 0 70 0;
+#X connect 75 0 70 0;
+#X connect 76 0 70 0;
+#X connect 77 0 71 0;
+#X connect 78 0 70 0;
+#X connect 80 0 70 0;
+#X connect 81 14 82 0;
+#X connect 81 15 84 0;
+#X connect 81 16 85 0;
+#X connect 87 14 88 0;
+#X connect 87 15 89 0;
+#X connect 87 16 90 0;
+#X connect 92 14 93 0;
+#X connect 92 15 94 0;
+#X connect 92 16 95 0;
+#X connect 97 0 81 0;
+#X connect 97 1 87 0;
+#X connect 97 2 92 0;
+#X connect 97 3 98 0;
+#X connect 97 4 103 0;
+#X connect 98 14 99 0;
+#X connect 98 15 100 0;
+#X connect 98 16 101 0;
+#X connect 103 14 104 0;
+#X connect 103 15 105 0;
+#X connect 103 16 106 0;

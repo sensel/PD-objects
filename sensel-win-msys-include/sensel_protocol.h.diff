@@ -1,0 +1,13 @@
+--- "/c/Program Files/Sensel/SenselLib/include/sensel_protocol.h"	2018-02-28 14:18:54.000000000 -0500
++++ sensel_protocol.h	2020-04-13 17:37:15.784703900 -0400
+@@ -27,7 +27,9 @@
+ 
+ #include "sensel_types.h"
+ 
+-#ifdef WIN32
++#ifdef __MINGW32__
++  #define PACK( __Declaration__, __Name__ ) __Declaration__ __attribute__((__packed__)) __Name__
++#elif defined WIN32
+   #define PACK( __Declaration__, __Name__ ) __pragma( pack(push, 1) )     \
+   __Declaration__ __Name__ __pragma( pack(pop) )
+ #else
