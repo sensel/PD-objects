@@ -154,7 +154,7 @@ typedef struct _sensel
 	t_outlet *x_outlet_status;
 
 	SENSEL_HANDLE x_handle;
-	SenselSensorInfo x_sensor_info;
+	//SenselSensorInfo x_sensor_info;
 	SenselFrameData *x_frame;
 	int x_connected;
 
@@ -315,7 +315,7 @@ static void sensel_connect(t_sensel *x, t_symbol *s)
 	if (!result)
 	{
 		// Get the sensor info
-		senselGetSensorInfo(x->x_handle, &x->x_sensor_info);
+		//senselGetSensorInfo(x->x_handle, &x->x_sensor_info);
 		// Set the frame content to scan contact data
 		senselSetFrameContent(x->x_handle, FRAME_CONTENT_CONTACTS_MASK);
 		// Allocate a frame of data, must be done before reading frame data
@@ -380,7 +380,7 @@ static void sensel_discover(t_sensel *x)
 	senselOpenDeviceByID(&x->x_handle, list.devices[i].idx);
 
 	// Get the sensor info
-	senselGetSensorInfo(x->x_handle, &x->x_sensor_info);
+	//senselGetSensorInfo(x->x_handle, &x->x_sensor_info);
 
 	// Set the frame content to scan contact data
 	senselSetFrameContent(x->x_handle, FRAME_CONTENT_CONTACTS_MASK);
@@ -454,7 +454,7 @@ static void sensel_poll(t_sensel *x)
 
 		senselGetNumAvailableFrames(x->x_handle, &num_frames);
 
-		senselGetSensorInfo(x->x_handle, &x->x_sensor_info);
+		//senselGetSensorInfo(x->x_handle, &x->x_sensor_info);
 
 		for (unsigned int f = 0; f < num_frames; f++)
 		{
