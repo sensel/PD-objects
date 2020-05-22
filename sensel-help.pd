@@ -2,7 +2,7 @@
 #X obj 698 169 cnv 15 174 83 empty empty empty 20 12 0 14 -261689 -66577
 0;
 #X obj 490 136 sensel;
-#X obj 523 159 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 523 159 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 490 14 discover;
 #X msg 569 39 connect SM01174813923;
@@ -115,10 +115,8 @@ contact outputted as a list consisting of 20 arguments:, f 68;
 \, plus the total number of contacts. simply add more \, as needed
 \, up to the sensel morph's supported limit., f 32;
 #X msg 714 63 poll \$1;
-#X obj 714 44 nbx 5 14 1 100 0 1 empty empty empty 0 -8 0 10 -262144
--1 -1 10 256 0;
-#X text 714 14 Set internal polling time (1-100ms \, default 10ms)
-, f 26;
+#X obj 714 44 nbx 5 14 5 100 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 5 256 0;
 #X obj 281 439 timer;
 #X obj 281 418 t b b;
 #X floatatom 281 460 5 0 0 0 - - -, f 5;
@@ -186,19 +184,21 @@ sensel device \, you may need to adjust permissions for accessing the
 ttyACM* (serial) devices by adding your user to the dialout group by
 typing in terminal:, f 38;
 #X text 200 638 sudo adduser <your-username> dialout;
-#X connect 1 0 118 0;
+#X text 714 14 Set internal polling time (5-100ms \, default 10ms)
+, f 26;
+#X connect 1 0 117 0;
 #X connect 1 1 2 0;
 #X connect 3 0 1 0;
 #X connect 4 0 1 0;
 #X connect 5 0 1 0;
 #X connect 6 0 1 0;
 #X connect 8 0 1 0;
-#X connect 19 0 115 0;
-#X connect 23 0 114 0;
-#X connect 27 0 113 0;
-#X connect 30 0 111 0;
-#X connect 33 0 112 0;
-#X connect 34 0 130 0;
+#X connect 19 0 114 0;
+#X connect 23 0 113 0;
+#X connect 27 0 112 0;
+#X connect 30 0 110 0;
+#X connect 33 0 111 0;
+#X connect 34 0 129 0;
 #X connect 34 1 35 0;
 #X connect 36 0 34 0;
 #X connect 37 0 34 0;
@@ -237,27 +237,27 @@ typing in terminal:, f 38;
 #X connect 97 17 44 0;
 #X connect 101 0 1 0;
 #X connect 102 0 101 0;
-#X connect 104 0 106 0;
-#X connect 105 0 104 0;
-#X connect 105 1 104 1;
-#X connect 108 0 1 0;
-#X connect 116 0 62 0;
-#X connect 116 0 105 0;
-#X connect 116 1 83 0;
-#X connect 116 2 84 0;
-#X connect 116 3 85 0;
-#X connect 116 4 86 0;
-#X connect 117 0 98 0;
-#X connect 118 0 116 0;
-#X connect 118 1 117 0;
-#X connect 118 2 131 1;
-#X connect 120 0 97 0;
-#X connect 120 1 96 0;
-#X connect 120 2 95 0;
-#X connect 120 3 94 0;
-#X connect 120 4 93 0;
-#X connect 121 0 119 0;
-#X connect 130 0 120 0;
-#X connect 130 1 121 0;
-#X connect 131 0 61 0;
-#X connect 132 0 131 0;
+#X connect 103 0 105 0;
+#X connect 104 0 103 0;
+#X connect 104 1 103 1;
+#X connect 107 0 1 0;
+#X connect 115 0 62 0;
+#X connect 115 0 104 0;
+#X connect 115 1 83 0;
+#X connect 115 2 84 0;
+#X connect 115 3 85 0;
+#X connect 115 4 86 0;
+#X connect 116 0 98 0;
+#X connect 117 0 115 0;
+#X connect 117 1 116 0;
+#X connect 117 2 130 1;
+#X connect 119 0 97 0;
+#X connect 119 1 96 0;
+#X connect 119 2 95 0;
+#X connect 119 3 94 0;
+#X connect 119 4 93 0;
+#X connect 120 0 118 0;
+#X connect 129 0 119 0;
+#X connect 129 1 120 0;
+#X connect 130 0 61 0;
+#X connect 131 0 130 0;
