@@ -1,4 +1,4 @@
-#N canvas 58 45 1296 699 10;
+#N canvas 58 52 1296 693 10;
 #X obj 490 136 sensel;
 #X obj 523 159 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -117,14 +117,11 @@ contact outputted as a list consisting of 20 arguments:, f 68;
 -1 -1 10 256 0;
 #X text 714 14 Set internal polling time (1-100ms \, default 10ms)
 , f 26;
-#X obj 698 311 timer;
-#X obj 698 290 t b b;
-#X floatatom 698 332 5 0 0 0 - - -, f 5;
+#X obj 281 439 timer;
+#X obj 281 418 t b b;
+#X floatatom 281 460 5 0 0 0 - - -, f 5;
 #X text 498 317 Since we already stripped the first argument (contact
 point number) \, unpacks below only have 19 arguments., f 28;
-#X text 737 291 time in ms between sensel frames. It varies based on
-the number of contacts and may be useful for setting a reasonable polling
-rate), f 24;
 #X obj 625 106 r led;
 #X text 663 92 Messages from below that set the sensel LEDs. The message
 format is: led <id> <brightness(0-100)>, f 36;
@@ -176,19 +173,23 @@ thanks to Peter Nyboer for his support. See README for version info.
 <ico@vt.edu>, f 68;
 #X text 15 14 DISIS/L2Ork Sensel Morph external;
 #X text 261 671 http://l2ork.icat.vt.edu;
-#X connect 0 0 118 0;
+#X text 320 419 The number to the left shows time in ms between sensel
+frames. It varies based on the number of contacts \, LED messages to
+the Sensel object \, and may be useful for setting a reasonable polling
+rate)., f 27;
+#X connect 0 0 117 0;
 #X connect 0 1 1 0;
 #X connect 2 0 0 0;
 #X connect 3 0 0 0;
 #X connect 4 0 0 0;
 #X connect 5 0 0 0;
 #X connect 7 0 0 0;
-#X connect 18 0 115 0;
-#X connect 22 0 114 0;
-#X connect 26 0 113 0;
-#X connect 29 0 111 0;
-#X connect 32 0 112 0;
-#X connect 33 0 122 0;
+#X connect 18 0 114 0;
+#X connect 22 0 113 0;
+#X connect 26 0 112 0;
+#X connect 29 0 110 0;
+#X connect 32 0 111 0;
+#X connect 33 0 121 0;
 #X connect 33 1 34 0;
 #X connect 35 0 33 0;
 #X connect 36 0 33 0;
@@ -225,27 +226,28 @@ thanks to Peter Nyboer for his support. See README for version info.
 #X connect 96 15 41 0;
 #X connect 96 16 42 0;
 #X connect 96 17 43 0;
-#X connect 97 0 104 0;
 #X connect 100 0 0 0;
 #X connect 101 0 100 0;
 #X connect 103 0 105 0;
 #X connect 104 0 103 0;
 #X connect 104 1 103 1;
-#X connect 108 0 0 0;
-#X connect 116 0 61 0;
-#X connect 116 1 82 0;
-#X connect 116 2 83 0;
-#X connect 116 3 84 0;
-#X connect 116 4 85 0;
-#X connect 117 0 97 0;
-#X connect 118 0 116 0;
-#X connect 118 1 117 0;
-#X connect 120 0 96 0;
-#X connect 120 1 95 0;
-#X connect 120 2 94 0;
-#X connect 120 3 93 0;
-#X connect 120 4 92 0;
+#X connect 107 0 0 0;
+#X connect 115 0 61 0;
+#X connect 115 0 104 0;
+#X connect 115 1 82 0;
+#X connect 115 2 83 0;
+#X connect 115 3 84 0;
+#X connect 115 4 85 0;
+#X connect 116 0 97 0;
+#X connect 117 0 115 0;
+#X connect 117 1 116 0;
+#X connect 117 2 60 0;
+#X connect 119 0 96 0;
+#X connect 119 1 95 0;
+#X connect 119 2 94 0;
+#X connect 119 3 93 0;
+#X connect 119 4 92 0;
+#X connect 120 0 118 0;
 #X connect 121 0 119 0;
-#X connect 122 0 120 0;
-#X connect 122 1 121 0;
-#X connect 122 2 123 0;
+#X connect 121 1 120 0;
+#X connect 121 2 122 0;
