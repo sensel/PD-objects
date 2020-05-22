@@ -466,7 +466,7 @@ static void sensel_poll(t_sensel *x)
 			{
 				
 				// Allow all contents to be seen
-				senselSetContactsMask(x->x_handle, 0x0F);
+				//senselSetContactsMask(x->x_handle, 0x0F);
 
 				if (x->x_data == NULL) // this is the first time around
 				{
@@ -497,13 +497,13 @@ static void sensel_poll(t_sensel *x)
 				SETFLOAT(&(x->x_data_end->args[8]), x->x_frame->contacts[c].delta_area);
 				SETFLOAT(&(x->x_data_end->args[9]), x->x_frame->contacts[c].min_x);
 				SETFLOAT(&(x->x_data_end->args[10]), x->x_frame->contacts[c].min_y);
-				SETFLOAT(&(x->x_data_end->args[11]),x->x_frame->contacts[c].max_x);
-				SETFLOAT(&(x->x_data_end->args[12]),x->x_frame->contacts[c].max_y);
-				SETFLOAT(&(x->x_data_end->args[13]),x->x_frame->contacts[c].peak_x);
-				SETFLOAT(&(x->x_data_end->args[14]),x->x_frame->contacts[c].peak_y);
-				SETFLOAT(&(x->x_data_end->args[16]),x->x_frame->contacts[c].x_pos);
-				SETFLOAT(&(x->x_data_end->args[17]),x->x_frame->contacts[c].y_pos);
-				SETFLOAT(&(x->x_data_end->args[19]),x->x_frame->contacts[c].area);
+				SETFLOAT(&(x->x_data_end->args[11]), x->x_frame->contacts[c].max_x);
+				SETFLOAT(&(x->x_data_end->args[12]), x->x_frame->contacts[c].max_y);
+				SETFLOAT(&(x->x_data_end->args[13]), x->x_frame->contacts[c].peak_x);
+				SETFLOAT(&(x->x_data_end->args[14]), x->x_frame->contacts[c].peak_y);
+				SETFLOAT(&(x->x_data_end->args[16]), x->x_frame->contacts[c].x_pos);
+				SETFLOAT(&(x->x_data_end->args[17]), x->x_frame->contacts[c].y_pos);
+				SETFLOAT(&(x->x_data_end->args[19]), x->x_frame->contacts[c].area);
 
 				if (x->x_frame->contacts[c].state != 3)
 				{
