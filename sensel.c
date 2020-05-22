@@ -42,6 +42,11 @@
 	polling logic and removed reliance on the external
  	metro, added total contact count, and setting the
 	polling time by Ivica Ico Bukvic <ico@vt.edu>
+
+	2020-05-22 v.1.2.0
+	Introduced ability to change LED brightness and
+	further improved the help file by Ivica Ico Bukvic
+	<ico@vt.edu>
   
 	Please see the supporting help file for the
 	explanation of its features.
@@ -169,7 +174,7 @@ typedef struct _sensel
 } t_sensel;
 
 /*
-	Struct for communicating with the Sensel thread
+	Struct for passing args to the Sensel thread
 */
 typedef struct _threadedFunctionParams
 {
@@ -235,6 +240,20 @@ static void sensel_set_poll_wait_time(t_sensel *x, t_floatarg f)
 		return;
 	}
 	x->x_poll_wait = (int)(f * 1000.0);
+}
+
+/*
+	Sets Sensel's LED with an ID to a desired brightness in (0-100)
+*/
+static void sensel_set_led(t_sensel *x, t_floatarg id, t_floatarg brightness)
+{
+	if (x->x_connected == 1)
+	{
+		pthread_mutex_lock(&x->x_unsafe_mutex);
+		senselSetLEDBrightness(x->x_handle, (int)id, (int)brightness);
+		pthread_mutex_unlock(&x->x_unsafe_mutex);
+		//post("sensel: setting led %d brightness to %d", (int)id, (int)brightness);
+	}
 }
 
 /*
@@ -536,7 +555,7 @@ static void sensel_poll(t_sensel *x)
 */
 static void *sensel_new()
 {
-	post("L2Ork Sensel Morph v.1.1.0");
+	post("L2Ork Sensel Morph v.1.2.0");
 
 	t_sensel *x = (t_sensel *)pd_new(sensel_class);
 
@@ -652,4 +671,6 @@ void sensel_setup(void)
 		gensym("identify"), 0);
 	class_addmethod(sensel_class, (t_method)sensel_set_poll_wait_time,
 		gensym("poll"), A_FLOAT);
+	class_addmethod(sensel_class, (t_method)sensel_set_led,
+		gensym("led"), A_FLOAT, A_FLOAT);
 }

@@ -10,6 +10,6 @@ define forWindows
     CPPFLAGS += -I./sensel-win-msys-include
 endef
 
-datafiles = sensel-help.pd
+datafiles = sensel-help.pd sensel-led.pd
 
 include Makefile.pdlibbuilder.revised
