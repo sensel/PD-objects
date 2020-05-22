@@ -25,11 +25,10 @@ CHANGELOG
   metro, added total contact count, and setting the
   polling time by Ivica Ico Bukvic <ico@vt.edu>
 
-
-
-TODO
-----
-*Add poll message that will allow adjusting the polling rate (default 10ms)
+2020-05-22 v.1.2.0
+  Introduced ability to change LED brightness and
+  further improved the help file by Ivica Ico Bukvic
+  <ico@vt.edu>
 
 
 
