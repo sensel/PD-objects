@@ -672,5 +672,5 @@ void sensel_setup(void)
 	class_addmethod(sensel_class, (t_method)sensel_set_poll_wait_time,
 		gensym("poll"), A_FLOAT);
 	class_addmethod(sensel_class, (t_method)sensel_set_led,
-		gensym("led"), A_FLOAT, A_FLOAT);
+		gensym("led"), A_FLOAT, A_FLOAT, 0);
 }
