@@ -1,6 +1,8 @@
 #N canvas 58 52 1296 693 10;
+#X obj 698 169 cnv 15 174 83 empty empty empty 20 12 0 14 -261689 -66577
+0;
 #X obj 490 136 sensel;
-#X obj 523 159 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 523 159 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X msg 490 14 discover;
 #X msg 569 39 connect SM01174813923;
@@ -68,7 +70,7 @@ serial numbers, f 69;
 matching serial number, f 75;
 #X text 934 123 This is a second instance for connecting second sensel
 to the same computer, f 42;
-#X obj 698 221 print output_from_sensel_1;
+#X obj 698 301 print output_from_sensel_1;
 #X obj 490 377 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X text 15 364 2: contact status (0=invalid \, 1=start \, 2=move \,
 3=end);
@@ -107,8 +109,8 @@ contact outputted as a list consisting of 20 arguments:, f 68;
 #X obj 924 501 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X obj 907 439 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X obj 890 377 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
-#X floatatom 698 270 5 0 0 0 - - -, f 5;
-#X text 734 270 total number of contacts;
+#X floatatom 698 350 5 0 0 0 - - -, f 5;
+#X text 734 350 total number of contacts;
 #X text 496 221 The route object focuses only on the first 5 points
 \, plus the total number of contacts. simply add more \, as needed
 \, up to the sensel morph's supported limit., f 32;
@@ -134,13 +136,11 @@ below., f 75;
 #X obj 805 484 sensel-led 1;
 #X obj 788 422 sensel-led 0;
 #X obj 490 295 route 0 1 2 3 4;
-#X obj 698 249 route contacts;
+#X obj 698 329 route contacts;
 #X obj 490 179 t a a a;
 #X floatatom 989 316 5 0 0 0 - - -, f 5;
 #X obj 890 295 route 0 1 2 3 4;
 #X obj 989 295 route contacts;
-#X obj 890 179 t a a a;
-#X obj 1082 295 print output_from_sensel_2;
 #N canvas 0 22 450 300 META 0;
 #X text 30 62 DESCRIPTION L2Ork external for the Sensel Morph multitouch
 controller;
@@ -156,12 +156,8 @@ message showing the current total number of contacts;
 #X text 30 208 RELEASE_DATE 2020;
 #X text 30 228 HELP_PATCH_AUTHORS Ivica Ico Bukvic;
 #X restore 211 671 pd META;
-#X obj 191 562 cnv 15 249 96 empty empty empty 20 12 0 14 -261689 -66577
-0;
-#X text 200 570 IMPORTANT! On Linux \, to be able to connect to the
-sensel device \, you will either have to adjust permissions for accessing
-the ttyACM* (serial) devices \, or run pd-l2ork \, purr-data \, or
-pd with sudo privileges., f 38;
+#X obj 191 548 cnv 15 249 116 empty empty empty 20 12 0 14 -261689
+-66577 0;
 #X text 15 233 led <id> <brightness(0-100)>: sets the sensel morph
 led brightness \, sending a lot of led messages can quickly bog down
 the sensel device \, so rate control is encouraged (e.g. see the sensel-led
@@ -177,77 +173,91 @@ thanks to Peter Nyboer for his support. See README for version info.
 frames. It varies based on the number of contacts \, LED messages to
 the Sensel object \, and may be useful for setting a reasonable polling
 rate)., f 27;
-#X connect 0 0 117 0;
-#X connect 0 1 1 0;
-#X connect 2 0 0 0;
-#X connect 3 0 0 0;
-#X connect 4 0 0 0;
-#X connect 5 0 0 0;
-#X connect 7 0 0 0;
-#X connect 18 0 114 0;
-#X connect 22 0 113 0;
-#X connect 26 0 112 0;
-#X connect 29 0 110 0;
-#X connect 32 0 111 0;
-#X connect 33 0 121 0;
-#X connect 33 1 34 0;
-#X connect 35 0 33 0;
-#X connect 36 0 33 0;
-#X connect 37 0 33 0;
-#X connect 38 0 33 0;
-#X connect 40 0 33 0;
-#X connect 61 15 15 0;
-#X connect 61 16 17 0;
-#X connect 61 17 18 0;
-#X connect 82 15 20 0;
-#X connect 82 16 21 0;
-#X connect 82 17 22 0;
-#X connect 83 15 24 0;
-#X connect 83 16 25 0;
-#X connect 83 17 26 0;
-#X connect 84 15 27 0;
-#X connect 84 16 28 0;
-#X connect 84 17 29 0;
-#X connect 85 15 30 0;
-#X connect 85 16 31 0;
-#X connect 85 17 32 0;
-#X connect 92 15 55 0;
-#X connect 92 16 56 0;
-#X connect 92 17 57 0;
-#X connect 93 15 52 0;
-#X connect 93 16 53 0;
-#X connect 93 17 54 0;
-#X connect 94 15 49 0;
-#X connect 94 16 50 0;
-#X connect 94 17 51 0;
-#X connect 95 15 45 0;
-#X connect 95 16 46 0;
-#X connect 95 17 47 0;
-#X connect 96 15 41 0;
-#X connect 96 16 42 0;
-#X connect 96 17 43 0;
-#X connect 100 0 0 0;
-#X connect 101 0 100 0;
-#X connect 103 0 105 0;
-#X connect 104 0 103 0;
-#X connect 104 1 103 1;
-#X connect 107 0 0 0;
-#X connect 115 0 61 0;
-#X connect 115 0 104 0;
-#X connect 115 1 82 0;
-#X connect 115 2 83 0;
-#X connect 115 3 84 0;
-#X connect 115 4 85 0;
-#X connect 116 0 97 0;
-#X connect 117 0 115 0;
-#X connect 117 1 116 0;
-#X connect 117 2 60 0;
-#X connect 119 0 96 0;
-#X connect 119 1 95 0;
-#X connect 119 2 94 0;
-#X connect 119 3 93 0;
-#X connect 119 4 92 0;
-#X connect 120 0 118 0;
+#X obj 890 179 t a a;
+#X obj 698 279 gate 1 0;
+#X obj 698 259 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 715 258 Toggle console output;
+#X text 705 176 WARNING! Copious and prolonged console output in purr-data
+only can over time adversely affect the overall performance., f 26
+;
+#X text 200 556 IMPORTANT! On Linux \, to be able to connect to the
+sensel device \, you may need to adjust permissions for accessing the
+ttyACM* (serial) devices by adding your user to the dialout group by
+typing in terminal:, f 38;
+#X text 200 638 sudo adduser <your-username> dialout;
+#X connect 1 0 118 0;
+#X connect 1 1 2 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X connect 6 0 1 0;
+#X connect 8 0 1 0;
+#X connect 19 0 115 0;
+#X connect 23 0 114 0;
+#X connect 27 0 113 0;
+#X connect 30 0 111 0;
+#X connect 33 0 112 0;
+#X connect 34 0 130 0;
+#X connect 34 1 35 0;
+#X connect 36 0 34 0;
+#X connect 37 0 34 0;
+#X connect 38 0 34 0;
+#X connect 39 0 34 0;
+#X connect 41 0 34 0;
+#X connect 62 15 16 0;
+#X connect 62 16 18 0;
+#X connect 62 17 19 0;
+#X connect 83 15 21 0;
+#X connect 83 16 22 0;
+#X connect 83 17 23 0;
+#X connect 84 15 25 0;
+#X connect 84 16 26 0;
+#X connect 84 17 27 0;
+#X connect 85 15 28 0;
+#X connect 85 16 29 0;
+#X connect 85 17 30 0;
+#X connect 86 15 31 0;
+#X connect 86 16 32 0;
+#X connect 86 17 33 0;
+#X connect 93 15 56 0;
+#X connect 93 16 57 0;
+#X connect 93 17 58 0;
+#X connect 94 15 53 0;
+#X connect 94 16 54 0;
+#X connect 94 17 55 0;
+#X connect 95 15 50 0;
+#X connect 95 16 51 0;
+#X connect 95 17 52 0;
+#X connect 96 15 46 0;
+#X connect 96 16 47 0;
+#X connect 96 17 48 0;
+#X connect 97 15 42 0;
+#X connect 97 16 43 0;
+#X connect 97 17 44 0;
+#X connect 101 0 1 0;
+#X connect 102 0 101 0;
+#X connect 104 0 106 0;
+#X connect 105 0 104 0;
+#X connect 105 1 104 1;
+#X connect 108 0 1 0;
+#X connect 116 0 62 0;
+#X connect 116 0 105 0;
+#X connect 116 1 83 0;
+#X connect 116 2 84 0;
+#X connect 116 3 85 0;
+#X connect 116 4 86 0;
+#X connect 117 0 98 0;
+#X connect 118 0 116 0;
+#X connect 118 1 117 0;
+#X connect 118 2 131 1;
+#X connect 120 0 97 0;
+#X connect 120 1 96 0;
+#X connect 120 2 95 0;
+#X connect 120 3 94 0;
+#X connect 120 4 93 0;
 #X connect 121 0 119 0;
-#X connect 121 1 120 0;
-#X connect 121 2 122 0;
+#X connect 130 0 120 0;
+#X connect 130 1 121 0;
+#X connect 131 0 61 0;
+#X connect 132 0 131 0;

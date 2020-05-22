@@ -154,18 +154,20 @@ typedef struct _sensel
 	t_outlet *x_outlet_status;
 
 	SENSEL_HANDLE x_handle;
-	//SenselSensorInfo x_sensor_info;
 	SenselFrameData *x_frame;
 	int x_connected;
+	int x_thread_connected;
 
 	pthread_t x_unsafe_t;
 	pthread_mutex_t x_unsafe_mutex;
-	//pthread_cond_t x_unsafe_cond;
 	int x_unsafe;
 	t_data *x_data;
 	t_data *x_data_end;
 	int x_n_contacts;
 	int x_poll_wait;
+
+	short unsigned int x_led[24];
+	short unsigned int x_thread_led[24];
 
 	t_clock *x_clock_output;
 
@@ -187,56 +189,14 @@ typedef struct _threadedFunctionParams
 static void sensel_poll(t_sensel *x);
 
 /*
-	Threaded function that reads from the Sensel
-	without blocking the main audio thread
-*/
-static void *sensel_pthreadForAudioUnfriendlyOperations(void *ptr)
-{
-	t_threadedFunctionParams *rPars = (t_threadedFunctionParams*)ptr;
-	t_sensel *x = rPars->s_inst;
-
-	int connected = 0;
-
-	while(x->x_unsafe > -1)
-	{
-		pthread_mutex_lock(&x->x_unsafe_mutex);
-		// inform the external when the thread is ready
-		if (x->x_unsafe == 1)
-			x->x_unsafe = 0;
-		//pthread_cond_wait(&x->x_unsafe_cond, &x->x_unsafe_mutex);
-
-		if (connected != x->x_connected)
-		{
-			connected = x->x_connected;
-			if (connected)
-			{
-				// Start scanning the Sensel device
-				senselStartScanning(x->x_handle);
-			}
-			else {
-				senselStopScanning(x->x_handle);
-			}
-		}
-		sensel_poll(x);
-
-		pthread_mutex_unlock(&x->x_unsafe_mutex);
-
-		usleep(x->x_poll_wait);
-	}
-	pthread_exit(0);
-
-	return(0);
-}
-
-/*
 	Allows adjustment of the wait time
 	in between poll reads from the Sensel socket
 */
 static void sensel_set_poll_wait_time(t_sensel *x, t_floatarg f)
 {
-	if (f < 1.0 || f > 100.0)
+	if (f < 5.0 || f > 100.0)
 	{
-		error("sensel: poll time must be between 1 and 100ms (default 10ms).");
+		error("sensel: poll time must be between 5 and 100ms (default 10ms).");
 		return;
 	}
 	x->x_poll_wait = (int)(f * 1000.0);
@@ -249,11 +209,69 @@ static void sensel_set_led(t_sensel *x, t_floatarg id, t_floatarg brightness)
 {
 	if (x->x_connected == 1)
 	{
-		pthread_mutex_lock(&x->x_unsafe_mutex);
-		senselSetLEDBrightness(x->x_handle, (int)id, (int)brightness);
-		pthread_mutex_unlock(&x->x_unsafe_mutex);
-		//post("sensel: setting led %d brightness to %d", (int)id, (int)brightness);
+		if (id >= 0 && id <= 23 && brightness >= 0 && brightness <= 100)
+		{
+			x->x_led[(int)id] = (int)brightness;
+		}
 	}
+}
+
+/*
+	Processes changes in LEDs via subthread call
+*/
+static void sensel_update_leds(t_sensel *x)
+{
+	for (int i = 0; i < 24; i++)
+	{
+		if (x->x_led[i] != x->x_thread_led[i])
+		{
+			x->x_thread_led[i] = x->x_led[i];
+			senselSetLEDBrightness(x->x_handle, i, x->x_thread_led[i]);
+		}
+	}
+}
+
+/*
+	Threaded function that reads from the Sensel
+	without blocking the main audio thread
+*/
+static void *sensel_pthreadForAudioUnfriendlyOperations(void *ptr)
+{
+	t_threadedFunctionParams *rPars = (t_threadedFunctionParams*)ptr;
+	t_sensel *x = rPars->s_inst;
+
+	while(x->x_unsafe > -1)
+	{
+		pthread_mutex_lock(&x->x_unsafe_mutex);
+		// inform the external when the thread is ready
+		if (x->x_unsafe == 1)
+			x->x_unsafe = 0;
+
+		if (x->x_thread_connected != x->x_connected)
+		{
+			x->x_thread_connected = x->x_connected;
+			if (x->x_thread_connected)
+			{
+				// Start scanning the Sensel device
+				senselStartScanning(x->x_handle);
+			}
+			else {
+				// This is where we stop scanning and disconnect
+				senselStopScanning(x->x_handle);
+				senselFreeFrameData(x->x_handle, x->x_frame);
+				senselClose(x->x_handle);
+			}
+		}
+		sensel_poll(x);
+		sensel_update_leds(x);
+
+		pthread_mutex_unlock(&x->x_unsafe_mutex);
+
+		usleep(x->x_poll_wait);
+	}
+	pthread_exit(0);
+
+	return(0);
 }
 
 /*
@@ -314,8 +332,6 @@ static void sensel_connect(t_sensel *x, t_symbol *s)
 
 	if (!result)
 	{
-		// Get the sensor info
-		//senselGetSensorInfo(x->x_handle, &x->x_sensor_info);
 		// Set the frame content to scan contact data
 		senselSetFrameContent(x->x_handle, FRAME_CONTENT_CONTACTS_MASK);
 		// Allocate a frame of data, must be done before reading frame data
@@ -378,9 +394,6 @@ static void sensel_discover(t_sensel *x)
  
 	// Open a Sensel device by the id in the SenselDeviceList, handle initialized 
 	senselOpenDeviceByID(&x->x_handle, list.devices[i].idx);
-
-	// Get the sensor info
-	//senselGetSensorInfo(x->x_handle, &x->x_sensor_info);
 
 	// Set the frame content to scan contact data
 	senselSetFrameContent(x->x_handle, FRAME_CONTENT_CONTACTS_MASK);
@@ -446,15 +459,10 @@ static void sensel_poll(t_sensel *x)
 
 		t_data *temp;
 
-		// Start scanning the Sensel device
-		//senselStartScanning(x->x_handle);
-
 		// Read all available data from the Sensel device
 		senselReadSensor(x->x_handle);
 
 		senselGetNumAvailableFrames(x->x_handle, &num_frames);
-
-		//senselGetSensorInfo(x->x_handle, &x->x_sensor_info);
 
 		for (unsigned int f = 0; f < num_frames; f++)
 		{
@@ -464,9 +472,6 @@ static void sensel_poll(t_sensel *x)
 
 			for (int c = 0; c < x->x_frame->n_contacts; c++)
 			{
-				
-				// Allow all contents to be seen
-				//senselSetContactsMask(x->x_handle, 0x0F);
 
 				if (x->x_data == NULL) // this is the first time around
 				{
@@ -543,10 +548,8 @@ static void sensel_poll(t_sensel *x)
 			}
 		}
 
-		// Stop scanning the Sensel device
-		//senselStopScanning(x->x_handle);
-
-		clock_delay(x->x_clock_output, 0);
+		if (x->x_data != NULL)
+			clock_delay(x->x_clock_output, 0);
 	}
 }
 
@@ -563,10 +566,17 @@ static void *sensel_new()
 	x->x_outlet_status = outlet_new(&x->x_obj, &s_float);
 
 	x->x_connected = 0;
+	x->x_thread_connected = 0;
 	x->x_n_contacts = 0;
 	x->x_frame = NULL;
 	x->x_data =  NULL;
 	x->x_data_end = NULL;
+
+	for (int i = 0; i < 24; i++)
+	{
+		x->x_led[i] = 0;
+		x->x_thread_led[i] = 0;
+	}
 
 	x->x_clock_output = clock_new(x, (t_method)sensel_output_data);
 
@@ -585,7 +595,8 @@ static void *sensel_new()
 	// wait until other thread has properly intialized so that
 	// rPars do not get destroyed before the thread has gotten its
 	// pointer information
-	while(x->x_unsafe == 1) {
+	while(x->x_unsafe == 1)
+	{
 		sched_yield();
 	}
 
@@ -600,13 +611,8 @@ static void sensel_disconnect(t_sensel *x)
 	if (x->x_connected)
 	{
 		x->x_connected = 0;
-
-		//pthread_mutex_lock(&x->x_unsafe_mutex);
-		//pthread_cond_signal(&x->x_unsafe_cond);
-		//pthread_mutex_unlock(&x->x_unsafe_mutex);
-
-		senselFreeFrameData(x->x_handle, x->x_frame);
-		senselClose(x->x_handle);
+		while(x->x_thread_connected != x->x_connected)
+			sched_yield();
 
 		remove_connected_to_sensel_device_list(x->x_serial);
 		x->x_serial = NULL;
@@ -630,10 +636,6 @@ static void sensel_free(t_sensel * x)
 	}
 
 	x->x_unsafe = -1;
-
-	//pthread_mutex_lock(&x->x_unsafe_mutex);
-	//pthread_cond_signal(&x->x_unsafe_cond);
-	//pthread_mutex_unlock(&x->x_unsafe_mutex);
 
 	pthread_join(x->x_unsafe_t, NULL);
 	pthread_mutex_destroy(&x->x_unsafe_mutex);
