@@ -170,6 +170,7 @@ typedef struct _sensel
 	short unsigned int x_thread_led[24];
 
 	t_clock *x_clock_output;
+    int x_clock_set;
 
 	t_symbol *x_serial;
 
@@ -194,9 +195,9 @@ static void sensel_poll(t_sensel *x);
 */
 static void sensel_set_poll_wait_time(t_sensel *x, t_floatarg f)
 {
-	if (f < 5.0 || f > 100.0)
+	if (f < 1.0 || f > 100.0)
 	{
-		error("sensel: poll time must be between 5 and 100ms (default 10ms).");
+		error("sensel: poll time must be between 1 and 100ms (default 10ms).");
 		return;
 	}
 	x->x_poll_wait = (int)(f * 1000.0);
@@ -280,21 +281,25 @@ static void *sensel_pthreadForAudioUnfriendlyOperations(void *ptr)
 */
 static void sensel_output_data(t_sensel *x)
 {
-	while (x->x_data != NULL)
-	{
-		switch (x->x_data->type)
+    if (x->x_clock_set == 1)
+    {
+		while (x->x_data != NULL)
 		{
-			case 0: // data
-				outlet_list(x->x_outlet_data, gensym("list"), 20, x->x_data->args);
-				break;
-			case 1: // number of contacts
-				outlet_anything(x->x_outlet_data, gensym("contacts"), 1, &x->x_data->args[0]);
-				break;
+			switch (x->x_data->type)
+            {
+				case 0: // data
+                    outlet_list(x->x_outlet_data, gensym("list"), 20, x->x_data->args);
+					break;
+				case 1: // number of contacts
+					outlet_anything(x->x_outlet_data, gensym("contacts"), 1, &x->x_data->args[0]);
+					break;
+			}
+			t_data *last = x->x_data;
+            x->x_data = x->x_data->next;
+			free(last);
 		}
-		t_data *last = x->x_data;
-		x->x_data = x->x_data->next;
-		free(last);
-	}
+        x->x_clock_set = 0;
+    }
 }
 
 /*
@@ -548,8 +553,11 @@ static void sensel_poll(t_sensel *x)
 			}
 		}
 
-		if (x->x_data != NULL)
+		if (x->x_data != NULL && x->x_clock_set == 0)
+        {
 			clock_delay(x->x_clock_output, 0);
+            x->x_clock_set = 1;
+        }
 	}
 }
 
@@ -579,6 +587,7 @@ static void *sensel_new()
 	}
 
 	x->x_clock_output = clock_new(x, (t_method)sensel_output_data);
+    x->x_clock_set = 0;
 
 	// prep the secondary thread init variable
 	x->x_unsafe = 1;

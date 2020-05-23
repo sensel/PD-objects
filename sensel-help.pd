@@ -2,7 +2,7 @@
 #X obj 698 169 cnv 15 174 83 empty empty empty 20 12 0 14 -261689 -66577
 0;
 #X obj 490 136 sensel;
-#X obj 523 159 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 523 159 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X msg 490 14 discover;
 #X msg 569 39 connect SM01174813923;
@@ -21,25 +21,25 @@ serial numbers, f 69;
 #X text 15 118 INPUTS:;
 #X text 15 283 OUTPUTS:;
 #X text 15 347 1: contact point number;
-#X floatatom 655 402 5 0 0 0 X: - -;
+#X floatatom 655 402 5 0 0 0 X: - -, f 5;
 #X text 15 300 right outlet: indicates connection status (1=connected
 \, 0=disconnected), f 72;
-#X floatatom 709 402 5 0 0 0 Y: - -;
-#X floatatom 788 402 5 0 0 0 Force: - -;
+#X floatatom 709 402 5 0 0 0 Y: - -, f 5;
+#X floatatom 788 402 5 0 0 0 Force: - -, f 5;
 #X text 563 401 1st contact;
-#X floatatom 672 464 5 0 0 0 X: - -;
-#X floatatom 726 464 5 0 0 0 Y: - -;
-#X floatatom 805 464 5 0 0 0 Force: - -;
+#X floatatom 672 464 5 0 0 0 X: - -, f 5;
+#X floatatom 726 464 5 0 0 0 Y: - -, f 5;
+#X floatatom 805 464 5 0 0 0 Force: - -, f 5;
 #X text 580 463 2nd contact;
-#X floatatom 689 526 5 0 0 0 X: - -;
-#X floatatom 743 526 5 0 0 0 Y: - -;
-#X floatatom 822 526 5 0 0 0 Force: - -;
-#X floatatom 707 588 5 0 0 0 X: - -;
-#X floatatom 761 588 5 0 0 0 Y: - -;
-#X floatatom 840 588 5 0 0 0 Force: - -;
-#X floatatom 724 650 5 0 0 0 X: - -;
-#X floatatom 778 650 5 0 0 0 Y: - -;
-#X floatatom 857 650 5 0 0 0 Force: - -;
+#X floatatom 689 526 5 0 0 0 X: - -, f 5;
+#X floatatom 743 526 5 0 0 0 Y: - -, f 5;
+#X floatatom 822 526 5 0 0 0 Force: - -, f 5;
+#X floatatom 707 588 5 0 0 0 X: - -, f 5;
+#X floatatom 761 588 5 0 0 0 Y: - -, f 5;
+#X floatatom 840 588 5 0 0 0 Force: - -, f 5;
+#X floatatom 724 650 5 0 0 0 X: - -, f 5;
+#X floatatom 778 650 5 0 0 0 Y: - -, f 5;
+#X floatatom 857 650 5 0 0 0 Force: - -, f 5;
 #X obj 890 136 sensel;
 #X obj 923 159 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -49,23 +49,23 @@ serial numbers, f 69;
 #X msg 890 64 identify;
 #X text 940 158 connection indicator;
 #X msg 971 62 connect SM01172411629;
-#X floatatom 1056 402 5 0 0 0 X: - -;
-#X floatatom 1109 402 5 0 0 0 Y: - -;
-#X floatatom 1188 402 5 0 0 0 Force: - -;
+#X floatatom 1056 402 5 0 0 0 X: - -, f 5;
+#X floatatom 1109 402 5 0 0 0 Y: - -, f 5;
+#X floatatom 1188 402 5 0 0 0 Force: - -, f 5;
 #X text 964 401 1st contact;
-#X floatatom 1073 464 5 0 0 0 X: - -;
-#X floatatom 1126 464 5 0 0 0 Y: - -;
-#X floatatom 1205 464 5 0 0 0 Force: - -;
+#X floatatom 1073 464 5 0 0 0 X: - -, f 5;
+#X floatatom 1126 464 5 0 0 0 Y: - -, f 5;
+#X floatatom 1205 464 5 0 0 0 Force: - -, f 5;
 #X text 981 463 2nd contact;
-#X floatatom 1090 524 5 0 0 0 X: - -;
-#X floatatom 1143 524 5 0 0 0 Y: - -;
-#X floatatom 1222 524 5 0 0 0 Force: - -;
-#X floatatom 1108 588 5 0 0 0 X: - -;
-#X floatatom 1161 588 5 0 0 0 Y: - -;
-#X floatatom 1240 588 5 0 0 0 Force: - -;
-#X floatatom 1125 650 5 0 0 0 X: - -;
-#X floatatom 1178 650 5 0 0 0 Y: - -;
-#X floatatom 1257 650 5 0 0 0 Force: - -;
+#X floatatom 1090 524 5 0 0 0 X: - -, f 5;
+#X floatatom 1143 524 5 0 0 0 Y: - -, f 5;
+#X floatatom 1222 524 5 0 0 0 Force: - -, f 5;
+#X floatatom 1108 588 5 0 0 0 X: - -, f 5;
+#X floatatom 1161 588 5 0 0 0 Y: - -, f 5;
+#X floatatom 1240 588 5 0 0 0 Force: - -, f 5;
+#X floatatom 1125 650 5 0 0 0 X: - -, f 5;
+#X floatatom 1178 650 5 0 0 0 Y: - -, f 5;
+#X floatatom 1257 650 5 0 0 0 Force: - -, f 5;
 #X text 15 169 connect <serial-number>: connects to a device with a
 matching serial number, f 75;
 #X text 934 123 This is a second instance for connecting second sensel
@@ -109,17 +109,17 @@ contact outputted as a list consisting of 20 arguments:, f 68;
 #X obj 924 501 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X obj 907 439 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X obj 890 377 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
-#X floatatom 698 350 5 0 0 0 - - -;
+#X floatatom 698 350 5 0 0 0 - - -, f 5;
 #X text 734 350 total number of contacts;
 #X text 496 221 The route object focuses only on the first 5 points
 \, plus the total number of contacts. simply add more \, as needed
 \, up to the sensel morph's supported limit., f 32;
 #X msg 714 63 poll \$1;
-#X obj 714 44 nbx 5 14 5 100 0 1 empty empty empty 0 -8 0 10 -262144
--1 -1 5 256;
+#X obj 714 44 nbx 5 14 1 100 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 10 256 0;
 #X obj 281 439 timer;
 #X obj 281 418 t b b;
-#X floatatom 281 460 5 0 0 0 - - -;
+#X floatatom 281 460 5 0 0 0 - - -, f 5;
 #X text 498 317 Since we already stripped the first argument (contact
 point number) \, unpacks below only have 19 arguments., f 28;
 #X obj 625 106 r led;
@@ -136,7 +136,7 @@ below., f 75;
 #X obj 490 295 route 0 1 2 3 4;
 #X obj 698 329 route contacts;
 #X obj 490 179 t a a a;
-#X floatatom 989 316 5 0 0 0 - - -;
+#X floatatom 989 316 5 0 0 0 - - -, f 5;
 #X obj 890 295 route 0 1 2 3 4;
 #X obj 989 295 route contacts;
 #N canvas 0 22 450 300 META 0;
@@ -183,9 +183,9 @@ sensel device \, you may need to adjust permissions for accessing the
 ttyACM* (serial) devices by adding your user to the dialout group by
 typing in terminal:, f 38;
 #X text 200 638 sudo adduser <your-username> dialout;
-#X text 714 14 Set internal polling time (5-100ms \, default 10ms)
-, f 26;
 #X obj 698 279 spigot;
+#X text 714 14 Set internal polling time (1-100ms \, default 10ms)
+, f 26;
 #X connect 1 0 117 0;
 #X connect 1 1 2 0;
 #X connect 3 0 1 0;
@@ -250,7 +250,7 @@ typing in terminal:, f 38;
 #X connect 116 0 98 0;
 #X connect 117 0 115 0;
 #X connect 117 1 116 0;
-#X connect 117 2 136 0;
+#X connect 117 2 135 0;
 #X connect 119 0 97 0;
 #X connect 119 1 96 0;
 #X connect 119 2 95 0;
@@ -259,5 +259,5 @@ typing in terminal:, f 38;
 #X connect 120 0 118 0;
 #X connect 129 0 119 0;
 #X connect 129 1 120 0;
-#X connect 130 0 136 1;
-#X connect 136 0 61 0;
+#X connect 130 0 135 1;
+#X connect 135 0 61 0;
