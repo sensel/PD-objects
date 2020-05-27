@@ -263,7 +263,17 @@ static void *sensel_pthreadForAudioUnfriendlyOperations(void *ptr)
 				senselClose(x->x_handle);
 			}
 		}
-		sensel_poll(x);
+
+		// only poll for new data if the previous sensel_output_data
+		// has been processed (I suppose this could be also done
+		// with a semaphore but since Windows pthreads implementation
+		// via CygWin is not entirely compatible, I figured this may
+		// be a "cleaner" way to do this
+		if (x->x_clock_set == 0)
+		{
+			sensel_poll(x);
+		}
+
 		sensel_update_leds(x);
 
 		pthread_mutex_unlock(&x->x_unsafe_mutex);
@@ -553,7 +563,7 @@ static void sensel_poll(t_sensel *x)
 			}
 		}
 
-		if (x->x_data != NULL && x->x_clock_set == 0)
+		if (x->x_data != NULL)
         {
 			clock_delay(x->x_clock_output, 0);
             x->x_clock_set = 1;
