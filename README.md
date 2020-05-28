@@ -114,6 +114,8 @@ List of all (maximum 16) contact points, with each contact output as a list cons
 19. total force
 20. area
 
+More detailed descriptions of the contact data can be found in the [Sensel API guide.](http://guide.sensel.com/api/#contact-data)
+
 # NOTES
 Currently, the external only supports detecting of individual contact points and their traits. Future revisions should focus on outputting the grayscale matrix of the surface pressure in a Gem-compatible format (and/or using other Pure-Data-compatible matrix formats that may be used by alternative visual data processing libraries).
 
