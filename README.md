@@ -14,19 +14,19 @@ To build for Purr-Data (pd-vanilla setup may be similar with some subtle changes
 
 1. Set up a build environment:
 
-On Windows follow instructions on setting up the MSYS2 environment for Purr-Data (make sure it matches your OS in terms of 32-bit vs 64-bit--most modern iterations of Windows are 64-bit). Info on how to do this can be found in the [purr-data repository.](https://github.com/agraef/purr-data/blob/master/README.md#windows-32-bit-using-msys2)
+  * On Windows follow instructions on setting up the MSYS2 environment for Purr-Data (make sure it matches your OS in terms of 32-bit vs 64-bit--most modern iterations of Windows are 64-bit). Info on how to do this can be found in the [purr-data repository.](https://github.com/agraef/purr-data/blob/master/README.md#windows-32-bit-using-msys2)
 
-On Linux and OSX make sure you have your build gcc environment all set up (consult the OS documentation)
+  * On Linux and OSX make sure you have your build gcc environment all set up (consult the OS documentation)
 
 2. Install the Sensel lib for your OS found in the [Sensel API repo](https://github.com/sensel/sensel-api/tree/master/sensel-install)
 
 3. Using a terminal (in Windows use the MSYS2 MinGW 32-bit shell) go into this folder and run the following command (these options are assuming you have everything installed in a default path--if you don't you will need to adjust paths accordingly):
 
-* Linux: `make pdincludepath=/usr/include/pd-l2ork/`
+  * Linux: `make pdincludepath=/usr/include/pd-l2ork/`
 
-* OSX: `make pdincludepath=/Applications/Pd-l2ork.app/Contents/Resources/app.nw/include/pd-l2ork/`
+  * OSX: `make pdincludepath=/Applications/Pd-l2ork.app/Contents/Resources/app.nw/include/pd-l2ork/`
 
-* Windows: `make pdincludepath=/c/Program\ Files\ \(x86\)/Purr\ Data/include/pdl2ork pdbinpath=/c/Program\ Files\ \(x86\)/Purr\ Data/bin/`
+  * Windows: `make pdincludepath=/c/Program\ Files\ \(x86\)/Purr\ Data/include/pdl2ork pdbinpath=/c/Program\ Files\ \(x86\)/Purr\ Data/bin/`
 
 4. If everything compiles correctly, you should be able to run Purr-Data or Pure Data Vanilla and open the `sensel-help.pd` to test it out.
 
