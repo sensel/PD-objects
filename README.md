@@ -12,7 +12,7 @@ To build for Purr-Data (pd-vanilla setup may be similar with some subtle changes
 
 1. Set up a build environment:
 
-On Windows follow instructions on setting up the MSYS2 environment for Purr-Data (make sure it matches your OS in terms of 32-bit vs 64-bit--most modern iterations of Windows are 64-bit). Info on how to do this can be found here: https://github.com/agraef/purr-data/blob/master/README.md#windows-32-bit-using-msys2
+On Windows follow instructions on setting up the MSYS2 environment for Purr-Data (make sure it matches your OS in terms of 32-bit vs 64-bit--most modern iterations of Windows are 64-bit). Info on how to do this can be found in the [purr-data repository.](https://github.com/agraef/purr-data/blob/master/README.md#windows-32-bit-using-msys2)
 
 On Linux and OSX make sure you have your build gcc environment all set up (consult the OS documentation)
 
