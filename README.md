@@ -3,8 +3,10 @@
 [Purr-Data](https://agraef.github.io/purr-data/) and [Pure-Data](http://msp.ucsd.edu/software.html) external for interfacing with the [Sensel Morph](http://sensel.com/morph)
 
 by [Rachel Hachem](https://github.com/rachelhachem) and Ivica Ico Bukvic <ico@vt.edu>
+
 Part of the [ICAT Laptop Orchestra at Virgina Tech](http://l2ork.icat.vt.edu)
-[Released under the GPL v3 license](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
+Released under the [GPL v3 license](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 # BUILD INSTRUCTIONS
 
