@@ -58,8 +58,13 @@ Copy the
 sensel.dll
 sensel-help.pd
 sensel-led.pd
+LibSensel.dll
+LibSensel.lib
+LibSenselDecompress.dll
+LibSenselDecompress.lib
 ```
 files from this repo to your user `Documents/Pd` folder. You may want to make a "sensel" directory so you can put these files in user `/Documents/Pd/sensel`.
+
 
 ## Linux
 
