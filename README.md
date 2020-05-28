@@ -77,12 +77,12 @@ files from this repo to your `~/Documents/Pd` folder. You may want to make a "se
 
 ## Messages to the `sensel` object inlet:
 
-`discover`: discovers and connects to the first available sensel morph device
-`identify:` lists all sensel morph devices' serial numbers in the console
-`disconnect`: disconnects from a connected sensel morph device
-`connect <serial-number>`: connects to a device with a matching serial number
-`poll`: sets the polling rate in ms (1-100) at which the contact data is outputted. Each contact has 20 arguments described below
-`led <id> <brightness(0-100)>`: sets the sensel morph led brightness. Note that sending a lot of led messages can quickly bog down the sensel devicem so rate control is encouraged (e.g. see the sensel-led abstraction)
+* `discover`: discovers and connects to the first available sensel morph device
+* `identify:` lists all sensel morph devices' serial numbers in the console
+* `disconnect`: disconnects from a connected sensel morph device
+* `connect <serial-number>`: connects to a device with a matching serial number
+* `poll`: sets the polling rate in ms (1-100) at which the contact data is outputted. Each contact has 20 arguments described below
+* `led <id> <brightness(0-100)>`: sets the sensel morph led brightness. Note that sending a lot of led messages can quickly bog down the sensel devicem so rate control is encouraged (e.g. see the sensel-led abstraction)
 
 
 ## Messages from `sensel` object outlets:
@@ -93,26 +93,26 @@ Indicates connection status (1=connected, 0=disconnected)
 ### left outlet
 List of all (maximum 16) contact points, with each contact output as a list consisting of 20 arguments:
 
-	1: contact point number
-	2: contact status (0=invalid , 1=start , 2=move , 3=end)
-	3: orientation
-	4: major axis
-	5: minor axis
-	6: delta x
-	7: delta y
-	8: delta force
-	9: delta area
-	10: min x
-	11: min y
-	12: max x
-	13: max y
-	14: peak x
-	15: peak y
-	16: peak force
-	17: x position
-	18: y position
-	19: total force
-	20: area
+1. contact point number
+2. contact status (0=invalid , 1=start , 2=move , 3=end)
+3. orientation
+4. major axis
+5. minor axis
+6. delta x
+7. delta y
+8. delta force
+9. delta area
+10. min x
+11. min y
+12. max x
+13. max y
+14. peak x
+15. peak y
+16. peak force
+17. x position
+18. y position
+19. total force
+20. area
 
 # NOTES
 Currently, the external only supports detecting of individual contact points and their traits. Future revisions should focus on outputting the grayscale matrix of the surface pressure in a Gem-compatible format (and/or using other Pure-Data-compatible matrix formats that may be used by alternative visual data processing libraries).
