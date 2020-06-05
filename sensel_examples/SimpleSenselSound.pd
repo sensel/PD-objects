@@ -1,0 +1,179 @@
+#N canvas 78 23 1202 755 12;
+#X declare -path ./abs;
+#X obj 88 108 sensel;
+#X msg 84 28 discover;
+#X msg 84 49 disconnect;
+#X msg 84 70 identify;
+#X msg 175 49 connect SM01172411629;
+#X msg 175 28 connect SM01173912638;
+#X obj 86 208 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 446 130 route 0 1 2 3 4 5 6 7 8 9 10 12 13 14 15;
+#X obj 84 301 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 81 392 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 83 490 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 83 582 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 576 218 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 574 311 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 571 402 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 573 500 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 573 592 unpack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X obj 92 137 route contacts;
+#X floatatom 90 167 5 0 0 0 - - -;
+#X obj 341 232 basicvoice 1 10;
+#X obj 339 325 basicvoice 1 10;
+#X obj 337 416 basicvoice 1 10;
+#X obj 338 514 basicvoice 1 10;
+#X obj 338 606 basicvoice 1 10;
+#X obj 828 524 basicvoice 2 500;
+#X obj 826 426 basicvoice 2 500;
+#X obj 829 335 basicvoice 2 500;
+#X obj 828 243 basicvoice 2 500;
+#X obj 828 616 basicvoice 2 500;
+#X obj 513 663 output2~;
+#X obj 86 6 declare -path ./abs;
+#X obj 600 48 s scale;
+#X obj 709 69 s glide;
+#X obj 484 69 s quantize_tog;
+#X obj 483 43 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 601 23 5 0 115 0 - - -;
+#N canvas 92 23 288 163 scales 0;
+#X obj 101 91 text define -k \$0-scales;
+#A set major 0 2 4 5 7 9 11 \; natural_minor 0 2 3 5 7 8 10 \; harmonic_minor
+0 2 3 5 7 8 11 \; melodic_minor 0 2 3 5 7 9 11 \; major_blues 0 2 3
+4 7 9 \; minor_blues 0 3 5 6 7 10 \; pentatonic_major 0 2 4 7 9 \;
+pentatonic_minor 0 3 5 7 10 \; pentatonic_neutral 0 2 5 7 10 \; pentatonic_blues
+0 4 5 6 10 \; whole_tone 0 2 4 6 8 10 \; octatonic_diminished_h-w 0
+1 3 4 6 7 9 10 \; octatonic_diminished_w-h 0 2 3 5 6 8 10 11 \; Rock'n'roll
+0 3 4 5 7 9 10 \; major-minor 0 2 4 5 7 8 10 \; minor-major 0 2 3 5
+7 9 11 \; hungarian_major 0 3 4 6 7 9 10 \; hungarian_minor 0 2 3 6
+7 8 11 \; neapolitan_major 0 1 3 5 7 9 11 \; neapolitan_minor 0 1 3
+5 7 8 11 \; ionian 0 2 4 5 7 9 11 \; dorian 0 2 3 5 7 9 10 \; phrygian
+0 1 3 5 7 8 10 \; lydian 0 2 4 6 7 9 11 \; mixolydian 0 2 4 5 7 9 10
+\; aeolian 0 2 3 5 7 8 10 \; locrian 0 1 3 5 6 8 10 \; five-note_prometheus
+0 2 4 6 10 \; half-diminished_bebop 0 1 3 5 6 7 8 11 \; chromatic 0
+1 2 3 4 5 6 7 8 9 10 11 \; jazz_minor 0 2 3 5 7 9 11 \; jazz_minor_inverse
+0 1 3 5 7 9 10 \; synthetix_mixture_#5 0 2 4 6 8 9 10 \; pentatonic_hard
+0 2 5 7 9 \; pentatonic_major_#9_b7 0 3 4 7 10 \; pentatonic_major_b2
+0 1 4 7 9 \; pentatonic_major_b2_b5 0 1 4 6 9 \; pentatonic_major_b2_b6
+0 1 4 7 8 \; pentatonic_major_b3 0 1 3 6 9 \; pentatonic_major_b3_b6
+0 2 3 7 8 \; pentatonic_major_b5 0 2 4 6 9 \; pentatonic_major_b6 0
+2 4 7 8 \; pentatonic_major_b9 0 1 4 7 9 \; pentatonic_minor_7_b5 0
+3 5 6 10 \; pentatonic_minor_major_6 0 3 5 7 9 \; pentatonic_minor_with
+added_6 0 3 5 7 9 10 \; pentatonic_whole_tone 0 4 6 8 10 \; primary_pentatonic
+0 2 4 7 9 \; altered_diminished 0 1 3 4 6 8 9 \; altered_dominant 0
+1 3 4 6 8 10 \; altered_lydian 0 2 4 6 8 9 11 \; altered_mixolydian
+0 2 4 5 7 8 9 11 \; altered_pentatonic 0 1 5 7 9 \; anhemitonic_hexatonic
+0 2 4 6 8 10 \; augmented_hexatonic 0 3 4 7 8 11 \; auxiliary_diminished
+0 2 3 5 6 8 9 11 \; diminished_b9 0 1 3 5 6 8 9 \; diminished_blues
+0 1 3 4 6 7 9 10 \; diminished_locrian 0 1 3 4 6 8 9 \; diminished_whole-tone
+0 1 3 4 6 8 10 \; dominant_7th 0 2 5 7 9 10 \; dominant_diminished
+0 1 3 4 6 7 9 10 \; double_harmonic_major 0 1 4 5 7 8 11 \; double_harmonic_minor
+0 3 4 5 6 7 8 11 \; eight-note_diminished 0 2 3 5 6 8 9 11 \; enigmatic_scale
+0 1 4 6 8 10 11 \; full_minor 0 2 3 5 7 8 9 10 11 \; half-diminished
+0 2 3 5 6 8 10 \; half-whole 0 1 3 4 6 7 9 10 \; harmonic_and_neapolitan_minor_mixed
+0 1 2 3 5 7 8 11 \; harmonic_major 0 2 4 5 7 8 11 \; inverted_augmented
+0 1 4 5 8 9 \; jeth's_mode 0 2 3 5 6 9 11 \; leading_whole-tone 0 2
+4 6 7 10 11 \; major-minor_mixed 0 2 3 4 5 7 8 9 10 11 \; major_augmented
+0 2 4 5 8 9 11 \; major_inverse 0 1 3 5 7 8 10 \; melodic_major 0 1
+4 5 7 8 10 \; melodic_minor_#11 0 1 3 6 7 9 11 \; minor_b5 0 2 3 5
+6 8 10 \; minor_hexatonic 0 2 3 5 7 10 \; minor_pentatonic_with_leading_notes
+0 2 3 4 5 6 7 9 10 11 \; natural_minor 0 2 3 5 7 8 10 \; nine-note_blues
+0 2 3 4 5 6 7 9 10 \; nine-note_scale 0 2 3 4 6 7 8 9 11 \; overtone
+0 2 3 5 7 9 11 \; pure_minor 0 2 3 5 7 8 10 \; pyramid_hexatonix 0
+2 3 5 6 9 \; suspended_pentatonic 0 2 5 7 10 \; symmetrical_decatonic
+0 1 2 4 5 6 7 8 10 11 \; symetrical_diminished 0 1 3 4 6 7 9 10 \;
+utility_minor 0 2 3 5 7 8 10 11 \; whole-half-step_scale 0 2 3 5 6
+8 9 11 \; bebop_dominant 0 2 4 5 7 9 10 11 \; bebop_half-diminished
+0 1 3 5 6 7 8 11 \; bebop_major 0 2 4 5 7 8 9 11 \; bebop_minor 0 2
+3 4 5 7 9 10 \; black_key_pentatonic 0 2 5 7 9 \; blues_ennaetonic
+0 2 3 4 5 6 7 9 10 \; blues_heptatonic 0 3 4 5 6 7 10 \; blues_hexatonic
+0 3 5 6 7 10 \; blues_major 0 2 3 4 7 9 \; blues_minor 0 3 5 6 7 10
+\; blues_modified 0 2 3 5 6 7 10 \; blues_nine-note 0 2 3 4 5 6 7 9
+10 \; blues_nonatonic 0 2 3 4 5 6 7 9 10 \; blues_pentatonic 0 3 5
+6 10 \; blues_scale_I 0 3 5 6 10 \; blues_scale_II 0 2 3 4 5 6 7 9
+10 \; blues_scale_III 0 2 3 5 6 7 9 10 \; blues_scale_IV 0 3 4 5 6
+7 10 11 \; blues_scale_V 0 3 4 5 6 7 9 10 11 \; dominant_bebop 0 2
+4 5 7 9 10 11 \; major_bebop_I 0 2 4 5 7 8 9 11 \; major_bebop_II 0
+2 4 5 7 8 9 11 \; minor_bebop 0 2 4 5 7 8 9 11 \;;
+#X obj 18 36 text get \$0-scales;
+#X obj 18 4 inlet;
+#X obj 18 65 outlet;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X restore 601 70 pd scales;
+#X symbolatom 600 97 25 0 0 0 - - -;
+#X floatatom 709 36 5 5 5000 0 - - -;
+#X connect 0 0 7 0;
+#X connect 0 0 17 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 15 19 0;
+#X connect 6 16 19 1;
+#X connect 6 17 19 2;
+#X connect 7 0 6 0;
+#X connect 7 1 8 0;
+#X connect 7 2 9 0;
+#X connect 7 3 10 0;
+#X connect 7 4 11 0;
+#X connect 7 5 12 0;
+#X connect 7 6 13 0;
+#X connect 7 7 14 0;
+#X connect 7 8 15 0;
+#X connect 7 9 16 0;
+#X connect 8 15 20 0;
+#X connect 8 16 20 1;
+#X connect 8 17 20 2;
+#X connect 9 15 21 0;
+#X connect 9 16 21 1;
+#X connect 9 17 21 2;
+#X connect 10 15 22 0;
+#X connect 10 16 22 1;
+#X connect 10 17 22 2;
+#X connect 11 15 23 0;
+#X connect 11 16 23 1;
+#X connect 11 17 23 2;
+#X connect 12 15 27 0;
+#X connect 12 16 27 1;
+#X connect 12 17 27 2;
+#X connect 13 15 26 0;
+#X connect 13 16 26 1;
+#X connect 13 17 26 2;
+#X connect 14 15 25 0;
+#X connect 14 16 25 1;
+#X connect 14 17 25 2;
+#X connect 15 15 24 0;
+#X connect 15 16 24 1;
+#X connect 15 17 24 2;
+#X connect 16 15 28 0;
+#X connect 16 16 28 1;
+#X connect 16 17 28 2;
+#X connect 17 0 18 0;
+#X connect 19 0 29 0;
+#X connect 19 1 29 1;
+#X connect 20 0 29 0;
+#X connect 20 1 29 1;
+#X connect 21 0 29 0;
+#X connect 21 1 29 1;
+#X connect 22 0 29 0;
+#X connect 22 1 29 1;
+#X connect 23 0 29 0;
+#X connect 23 1 29 1;
+#X connect 24 0 29 0;
+#X connect 24 1 29 1;
+#X connect 25 0 29 0;
+#X connect 25 1 29 1;
+#X connect 26 0 29 0;
+#X connect 26 1 29 1;
+#X connect 27 0 29 0;
+#X connect 27 1 29 1;
+#X connect 28 0 29 0;
+#X connect 28 1 29 1;
+#X connect 34 0 33 0;
+#X connect 35 0 31 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 38 0 32 0;
