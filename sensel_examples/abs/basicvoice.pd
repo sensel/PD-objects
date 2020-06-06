@@ -58,7 +58,7 @@
 #X obj 370 70 loadbang;
 #X text 390 118 third arg choose glide time;
 #X obj 370 98 f \$3;
-#N canvas 0 23 581 387 quantize 1;
+#N canvas 0 23 581 387 quantize 0;
 #X obj 125 181 mtof;
 #X obj 123 152 f2scale locrian 24;
 #X obj 124 217 pack 0 10;
@@ -66,7 +66,7 @@
 #X obj 181 108 inlet;
 #X obj 123 249 outlet;
 #X obj 184 180 outlet;
-#X obj 240 103 inlet;
+#X obj 274 153 inlet;
 #X text 56 306 https://forum.pdpatchrepo.info/topic/11775/creating-a-quantizer/6
 ;
 #X text 57 281 f2scale from user "weightless";
@@ -78,7 +78,7 @@
 #X connect 2 0 5 0;
 #X connect 3 0 10 0;
 #X connect 4 0 1 1;
-#X connect 7 0 1 2;
+#X connect 7 0 2 1;
 #X connect 10 0 1 0;
 #X restore 265 260 pd quantize;
 #X obj 454 72 r glide;
@@ -119,7 +119,7 @@
 #X connect 36 0 38 0;
 #X connect 38 0 39 2;
 #X connect 39 0 24 0;
-#X connect 40 0 38 1;
-#X connect 41 0 35 1;
+#X connect 40 0 38 0;
+#X connect 41 0 35 0;
 #X connect 42 0 28 0;
 #X coords 0 600 1 599 200 60 0;
