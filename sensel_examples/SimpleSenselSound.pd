@@ -276,9 +276,11 @@ utility_minor 0 2 3 5 7 8 10 11 \; whole-half-step_scale 0 2 3 5 6
 #X connect 29 0 21 0;
 #X connect 29 0 21 1;
 #X restore 33 702 pd distance-reverb;
+#X obj 26 146 s sensel;
 #X connect 0 0 14 0;
 #X connect 0 0 4 0;
 #X connect 0 0 45 0;
+#X connect 0 0 46 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 3 15 33 0;
