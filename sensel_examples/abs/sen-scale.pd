@@ -8,6 +8,9 @@
 #X obj 58 124 *;
 #X obj 51 202 outlet;
 #X obj 186 149 expr abs($f4-$f3)/abs($f2-$f1);
+#X text 130 206 it just has a unique name to avoid conflicts;
+#X text 129 224 with other abstractions called "scale.";
+#X text 130 188 nothing particularly special about this 'scale';
 #X connect 0 0 2 0;
 #X connect 1 0 4 0;
 #X connect 2 0 6 0;
