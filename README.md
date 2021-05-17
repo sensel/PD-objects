@@ -8,6 +8,14 @@ Part of the [ICAT Laptop Orchestra at Virgina Tech](http://l2ork.icat.vt.edu)
 
 Released under the [GPL v3 license](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
+# SIMPLE INSTALLATION
+
+Use the deken package manager to install the externals. In Pure Data, go to the "Help" menu and select **Find Externals**. Search for `sensel` or `senselmorph` and you will be given installation options. 
+
+Install in Documents/Pd/ as recommmended by deken, unless you have a non-standard installation. 
+
+This installs the objects as well as helpfiles and several examples that can be found in your <user documents>/Pd/externals/senselmorph folder. 
+
 # BUILD INSTRUCTIONS
 
 To build for Purr-Data (pd-vanilla setup may be similar with some subtle changes in the include paths and likely does not require MSYS environment, so on Windows changes may be more significant):
