@@ -15,6 +15,9 @@ Use the deken package manager to install the externals. In Pure Data, go to the 
 Install in Documents/Pd/ as recommmended by deken, unless you have a non-standard installation. 
 
 This installs the objects as well as helpfiles and several examples that can be found in your <user documents>/Pd/externals/senselmorph folder. 
+ 
+Here's what this looks like on a Mac after selecting a package to install in the deken panel - windows and linux are very simlar:
+![Installing Sensel objects in Pure Data with Deken package manager](./deken_install_example.png)
 
 # BUILD INSTRUCTIONS
 
